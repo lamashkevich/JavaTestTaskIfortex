@@ -31,7 +31,7 @@ class SessionRepositoryTest {
         var result = sessionRepository.getFirstSessionByDeviceType(deviceType);
 
         assertTrue(result.isPresent());
-        assertEquals(exceptedType, result.get().getDeviceType());
+        assertEquals(exceptedType.getCode(), result.get().getDeviceTypeCode());
     }
 
     @ParameterizedTest

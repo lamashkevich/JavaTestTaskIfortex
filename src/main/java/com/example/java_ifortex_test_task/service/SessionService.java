@@ -26,6 +26,7 @@ public class SessionService {
         log.info("Getting first desktop session");
         return sessionRepository
                 .getFirstSessionByDeviceType(DeviceType.DESKTOP)
+                .map(sessionMapper::toEntity)
                 .map(sessionMapper::toDto)
                 .orElseThrow(() -> new EntityNotFoundException("Session not found"));
     }
@@ -36,6 +37,7 @@ public class SessionService {
         return sessionRepository
                 .getSessionsFromActiveUsersEndedBeforeDate(endDate)
                 .stream()
+                .map(sessionMapper::toEntity)
                 .map(sessionMapper::toDto)
                 .toList();
     }
